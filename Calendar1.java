@@ -17,18 +17,18 @@ public class Calendar1 {
 		// Advances the date and the day-of-the-week from 1/1/1900 till 31/12/1999, inclusive.
 	    // Prints each date dd/mm/yyyy in a separate line. If the day is a Sunday, prints "Sunday".
 	    // The following variable, used for debugging purposes, counts how many days were advanced so far.
-	    int debugDaysCounter = 0; 
+	    int debugDaysCounter = 3; 
+		advance();
 	    //// Write the necessary initialization code, and replace the condition
 	    //// of the while loop with the necessary condition 
-	 	while (true) {
+	 	while (debugDaysCounter<3) {
 	 		//// Write the body of the while 		
-	 		advance();
+	 		// advance();
 	 		debugDaysCounter++;
 	 		//// If you want to stop the loop after n days, replace the condition of the
 	 		//// if statement with the condition (debugDaysCounter == n)
-	 		if (false) { 
-	 			break;
-	 		}
+	 		
+	 		
         }
 	 	//// Write the necessary ending code here
 	 }
@@ -37,21 +37,86 @@ public class Calendar1 {
 	 // If the month changes, sets the number of days in this month.
 	 // Side effects: changes the static variables dayOfMonth, month, year, dayOfWeek, nDaysInMonth.
 	 private static void advance() {
-		// Replace this comment with your code
+		int year=1900;
+		int sundaycounter=1;
+		int totalof1sun = 0;
+		boolean stop=true;
+		while (stop)
+		{
+			for(int i=1;i<13;i++)
+		    {
+			for(int j=1;j<=nDaysInMonth(i,year);j++)
+			{
+				if(sundaycounter%7==0)
+				{
+					System.out.println(j+"/"+i+"/"+year+ " Sunday");
+					if (j == 1 )
+					totalof1sun++;
+				}
+				else{
+					System.out.println(j+"/"+i+"/"+year);
+				} 
+				sundaycounter++;
+				if (i == 12 && j == nDaysInMonth(i,year))
+				{
+					year++;
+					if (year == 2000)
+					{
+						stop=false;
+						System.out.println("During the 20th century, "+ (totalof1sun) + " Sundays fell on the first day of the month ");
+					}
+					
+					else 
+					{
+						i = 1;
+					    j = 0;
+					}
+					
+				}
+
+			}
+			
+		}
+		
+
+
+		
+
+	}
+		
 	 } 
 		 
-    // Returns true if the given year is a leap year, false otherwise.
 	private static boolean isLeapYear(int year) {
-	    // Replace the following statement with your code
-		return false;
+		if(year % 4 == 0 ) 
+		{
+           if (year % 100 == 0)
+		   {
+			if (year % 400 == 0)
+			{
+				return true;
+			}
+			else return false;
+		   } 
+		   else return true;
+		}
+		else return false;
 	}
 	 
-	// Returns the number of days in the given month and year.
-	// April, June, September, and November have 30 days each.
-	// February has 28 days in a common year, and 29 days in a leap year.
-	// All the other months have 31 days.
+	
 	private static int nDaysInMonth(int month, int year) {
-		// Replace the following statement with your code
-		return 0;
+		if (month == 4 || month == 6 || month == 9 || month == 11)
+		{
+          return 30;
+		}
+		else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+		{
+			return 31;
+		}
+		else if (isLeapYear(year))
+		{
+			if (month == 2)
+			return 29;
+		}
+		return 28;
 	}
 }

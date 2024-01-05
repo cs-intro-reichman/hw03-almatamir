@@ -29,6 +29,7 @@ public class LoanCalc {
 		System.out.printf("%.2f", bisectionSolver(loan, rate, n, epsilon));
 		System.out.println();
 		System.out.println("number of iterations: " + iterationCounter);
+		System.out.println(endBalance(loan, rate, n, n));
 	}
 	
 	/**
@@ -60,7 +61,16 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
+		double lefttopay=0;
+		double sum=0; 
+		double total;
+		double currentperiod=0;
+		for(int i=0; i< n; i++)
+		{
+			currentperiod= (loan - payment) * (1 + rate/100);
+			System.out.println("Period number "+ i + " is "+ currentperiod);
+		}
+		
     	return 0;
 	}
 }
