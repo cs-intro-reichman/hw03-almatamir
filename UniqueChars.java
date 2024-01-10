@@ -13,23 +13,15 @@ public class UniqueChars {
     public static String uniqueChars(String s) {
         String  news = "";
         news+= s.charAt(0);
-        boolean sameletter = true;
         for(int i=0;i <s.length();i++)
         {
             char ch = s.charAt(i);
             if (ch== ' ')
             news+=' ';
-            else for (int j=0; j<news.length();j++)
+            else if(news.indexOf(ch) == -1)
             {
-                if(news.charAt(j)==ch)
-                sameletter= false;
+                news += ch;
             }
-            if(sameletter==true)
-            {
-                news+=ch; 
-            }
-            else sameletter=true;
-            
 
         }
         return news;
